@@ -9,9 +9,14 @@ app.get('/', (req, res) => {
 });
 
 const shoppingList = require('./Shoppinglist');
+const suppliesArr = [];
+const foodArr = [];
+shoppingList.lists[0].items.forEach(item => suppliesArr.push(item.name));
+shoppingList.lists[1].items.forEach(item => foodArr.push(item.name));
 
 app.get('/shoppinglist', (req, res) => {
-	res.send(shoppingList);
+	// res.send(shoppingList);
+	res.send(`<h1>shopping list?</h1> <h2>${shoppingList.lists[0].listName}</h2> <p>${suppliesArr}</p><br/> <h2>${shoppingList.lists[1].listName}</h2> <p>${foodArr}</p>`);
 });
 
 app.get('/shoppinglist/:listName', (req, res)=>{
